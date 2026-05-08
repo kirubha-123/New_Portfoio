@@ -1,34 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+import localProjects from '../data/projects';
 
 const Projects = () => {
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [projects, setProjects] = useState(localProjects);
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/projects');
+                const response = await fetch('/api/projects');
+                if (!response.ok) {
+                    throw new Error('Failed to load remote projects');
+                }
                 const data = await response.json();
-                setProjects(data);
+                if (Array.isArray(data) && data.length > 0) {
+                    setProjects(data);
+                }
             } catch (error) {
-                console.error('Error fetching projects:', error);
-            } finally {
-                setLoading(false);
+                setProjects(localProjects);
             }
         };
 
         fetchProjects();
     }, []);
-
-    if (loading) {
-        return (
-            <section id="projects" className="py-20 flex justify-center items-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent-color"></div>
-            </section>
-        );
-    }
 
     return (
         <section id="projects" className="py-20">
