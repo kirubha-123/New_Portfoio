@@ -51,23 +51,7 @@ const Projects = () => {
                             viewport={{ once: true }}
                             className={`flex flex-col md-flex-row gap-8 items-center ${index % 2 !== 0 ? 'md-flex-row-reverse' : ''}`}
                         >
-                            <div className="w-full md-w-1/2">
-                                <div className="glass-card p-3 rounded-[1.5rem] relative overflow-hidden group">
-                                    <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-[250px] md-h-[350px] object-cover rounded-[1rem] transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                    <div className="absolute top-6 right-6 flex gap-2">
-                                        <a href={project.github} target="_blank" rel="noreferrer" className="p-3 bg-bg-color border border-border-color rounded-full hover:border-accent-color transition-colors">
-                                            <Github size={20} />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w-full md-w-1/2 space-y-6">
+                                <div className="w-full space-y-6">
                                 <h3 className="text-3xl font-bold">{project.title}</h3>
                                 <p className="text-text-secondary text-lg leading-relaxed">
                                     {project.description}
