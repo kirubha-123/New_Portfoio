@@ -8,9 +8,16 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const CLIENT_URL = process.env.CLIENT_URL;
 
-app.use(cors());
+app.use(cors({
+  origin: CLIENT_URL || true,
+}));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Portfolio backend is running' });
+});
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });

@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import localProjects from '../data/projects';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const Projects = () => {
     const [projects, setProjects] = useState(localProjects);
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch('/api/projects');
+                const response = await fetch(`${API_BASE_URL}/api/projects`);
                 if (!response.ok) {
                     throw new Error('Failed to load remote projects');
                 }
@@ -41,30 +43,43 @@ const Projects = () => {
                     </p>
                 </motion.div>
 
-                <div className="flex flex-col gap-12">
+                <div className="grid grid-cols-1 md-grid-cols-2 xl-grid-cols-3 gap-8">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            transition={{ duration: 0.55, delay: index * 0.12, ease: 'easeOut' }}
                             viewport={{ once: true }}
-                            className={`flex flex-col md-flex-row gap-8 items-center ${index % 2 !== 0 ? 'md-flex-row-reverse' : ''}`}
+                            whileHover={{ y: -10, scale: 1.01 }}
+                            className="group relative overflow-hidden rounded-[1.5rem] border border-border-color bg-white/5 p-6 shadow-2xl shadow-black/10 backdrop-blur-sm"
                         >
-                                <div className="w-full space-y-6">
-                                <h3 className="text-3xl font-bold">{project.title}</h3>
-                                <p className="text-text-secondary text-lg leading-relaxed">
-                                    {project.description}
-                                </p>
+                            <div className="absolute inset-0 bg-gradient-primary opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                            <div className="relative z-10 flex h-full flex-col gap-6">
+                                <div className="flex items-center justify-between gap-4">
+                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-color bg-black/20 text-accent-secondary">
+                                        0{index + 1}
+                                    </span>
+                                    <Github size={18} className="text-accent-color" />
+                                </div>
+
+                                <div className="space-y-4">
+                                    <h3 className="text-2xl font-bold leading-tight">{project.title}</h3>
+                                    <p className="text-text-secondary leading-relaxed">
+                                        {project.description}
+                                    </p>
+                                </div>
+
                                 <div className="flex flex-wrap gap-2">
                                     {project.tech.map((t, i) => (
-                                        <span key={i} className="px-3 py-1 bg-white opacity-5 border border-border-color rounded-lg text-xs font-semibold text-accent-secondary">
+                                        <span key={i} className="rounded-full border border-border-color bg-black/20 px-3 py-1 text-xs font-semibold text-accent-secondary">
                                             {t}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="pt-4">
-                                    <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-accent-color font-bold hover:gap-4 transition-all">
+
+                                <div className="mt-auto pt-2">
+                                    <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold text-accent-color transition-all hover:gap-4">
                                         Explore Project Code <ExternalLink size={18} />
                                     </a>
                                 </div>
@@ -81,6 +96,13 @@ const Projects = () => {
         .font-semibold { font-weight: 600; }
         .transition-all { transition: all 0.3s ease; }
         .hover\:gap-4:hover { gap: 1rem; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        @media (min-width: 768px) {
+          .md-grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1280px) {
+          .xl-grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
       `}</style>
         </section>
     );
