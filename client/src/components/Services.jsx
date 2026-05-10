@@ -11,7 +11,7 @@ import {
 
 const services = [
     {
-        title: "Java Full Stack Development",
+        title: "Full Stack Development",
         description: "Developing robust end-to-end applications using Java, Spring Boot on the backend and React on the frontend.",
         icon: <Cpu size={32} className="text-accent-color" />
     },

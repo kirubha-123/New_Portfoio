@@ -18,7 +18,7 @@ const Hero = () => {
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-accent-secondary font-bold text-sm tracking-widest uppercase mb-4 block">
-                            Java Full Stack Web Developer
+                            Full Stack Developer
                         </span>
                         <h1 className="text-4xl md-text-6xl font-bold mb-6 leading-tight">
                             Hi, I'm <br />
@@ -46,7 +46,7 @@ const Hero = () => {
 
                     <div className="flex flex-wrap gap-8 mt-12">
                         {[
-                            { icon: <Code size={24} />, label: 'Java Full Stack' },
+                            { icon: <Code size={24} />, label: 'Full Stack' },
                             { icon: <Database size={24} />, label: 'Spring Boot' },
                             { icon: <Globe size={24} />, label: 'React.js' }
                         ].map((item, i) => (
