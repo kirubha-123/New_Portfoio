@@ -35,8 +35,8 @@ const Hero = () => {
                                 Contact Me
                             </a>
                             <a
-                                href="/resume.jpg"
-                                download="Kirubhakaran_Resume.jpg"
+                                href="/resume.pdf"
+                                download="Kirubhakaran_Resume.pdf"
                                 className="flex items-center gap-2 px-8 py-3 rounded-full bg-white opacity-5 hover:opacity-10 transition-all border border-border-color"
                             >
                                 Download Resume
