@@ -1,43 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Linkedin, Github } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/contact`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            const data = await response.json();
-            if (data.success) {
-                alert('Thank you for reaching out, ' + formData.name + '! I will get back to you soon.');
-                setFormData({ name: '', email: '', subject: '', message: '' });
-            } else {
-                alert('Something went wrong. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('Error connecting to server. Please try again later.');
-        }
-    };
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
 
     return (
         <section id="contact" className="py-20">
@@ -110,15 +75,15 @@ const Contact = () => {
                         viewport={{ once: true }}
                         className="w-full lg-w-2/3"
                     >
-                        <form onSubmit={handleSubmit} className="glass-card p-10 space-y-6">
+                        <form action="https://formsubmit.co/kirubhakirubha92@gmail.com" method="POST" className="glass-card p-10 space-y-6">
+                            <input type="hidden" name="_captcha" value="false" />
+                            <input type="hidden" name="_template" value="table" />
                             <div className="grid grid-cols-1 md-grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-medium mb-2">Full Name</label>
                                     <input
                                         type="text"
                                         name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
                                         required
                                         placeholder="John Doe"
                                         className="form-input"
@@ -129,8 +94,6 @@ const Contact = () => {
                                     <input
                                         type="email"
                                         name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
                                         required
                                         placeholder="john@example.com"
                                         className="form-input"
@@ -141,9 +104,7 @@ const Contact = () => {
                                 <label className="block text-sm font-medium mb-2">Subject</label>
                                 <input
                                     type="text"
-                                    name="subject"
-                                    value={formData.subject}
-                                    onChange={handleChange}
+                                    name="_subject"
                                     required
                                     placeholder="Inquiry"
                                     className="form-input"
@@ -154,8 +115,6 @@ const Contact = () => {
                                 <textarea
                                     name="message"
                                     rows="5"
-                                    value={formData.message}
-                                    onChange={handleChange}
                                     required
                                     placeholder="Your message here..."
                                     className="form-input"

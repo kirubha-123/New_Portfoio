@@ -22,6 +22,14 @@ const projects = [
         tech: ['IoT', 'Automation', 'Monitoring'],
         github: 'https://github.com/kirubha-123',
         live: '#'
+    },
+    {
+        id: 4,
+        title: 'Billing Project',
+        description: 'Developed a comprehensive billing system to manage transactions and generate invoices.',
+        tech: ['React.js', 'Node.js', 'Database'],
+        github: 'https://github.com/kirubha-123',
+        live: '#'
     }
 ];
 

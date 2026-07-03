@@ -3,6 +3,12 @@ import { motion } from 'framer-motion';
 
 const experiences = [
     {
+        company: "Besant Technologies, Chennai",
+        role: "Java Full Stack Developer",
+        period: "Course & Internship",
+        desc: "Successfully completed a comprehensive Java Full Stack Developer course and internship program. Gained practical hands-on experience in building end-to-end web applications."
+    },
+    {
         company: "Codec Technologies",
         role: "Front End Developer (Intern)",
         period: "Oct 2025 - Nov 2025",
@@ -64,7 +70,7 @@ const Experience = () => {
                             </div>
                             <div className="hidden md-flex absolute left-1/2 top-0 bottom-0 w-0.5 bg-border-color transform -translate-x-1/2"></div>
                             <div className="hidden md-flex absolute left-1/2 w-4 h-4 rounded-full bg-gradient-primary transform -translate-x-1/2 -translate-y-1/2 z-10"
-                                style={{ top: idx === 0 ? '20%' : idx === 1 ? '50%' : '80%' }}></div>
+                                style={{ top: `${(idx + 1) * (100 / (experiences.length + 1))}%` }}></div>
                             <div className="w-full md-w-1/2"></div>
                         </motion.div>
                     ))}
