@@ -44,7 +44,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h4 className="font-bold">Location</h4>
-                                <p className="text-text-secondary text-sm">Perambalur, Tamil Nadu</p>
+                                <p className="text-text-secondary text-sm">Chennai, Tamil Nadu</p>
                             </div>
                         </div>
 
